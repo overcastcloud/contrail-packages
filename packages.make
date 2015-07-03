@@ -69,7 +69,7 @@ source-package-contrail-web-core: clean-contrail-web-core debian-contrail-web-co
 	(cd build/packages/$(PACKAGE); sed -i 's/VERSION/$(CONTRAIL_VERSION)/g' debian/changelog)
 	(cd build/packages/$(PACKAGE); sed -i 's/SERIES/$(SERIES)/g' debian/changelog)
 	(cd build/packages/$(PACKAGE); make -f debian/rules get-orig-source)
-	(cd build/packages/$(PACKAGE); dpkg-buildpackage -S -rfakeroot $(KEYOPT))
+	(cd build/packages/$(PACKAGE); dpkg-buildpackage -S -uc -us)
 
 package-contrail-web-controller: clean-contrail-web-controller debian-contrail-web-controller
 	$(eval PACKAGE := $(patsubst package-%,%,$@))
@@ -84,7 +84,7 @@ source-package-contrail-web-controller: clean-contrail-web-controller debian-con
 	(cd build/packages/$(PACKAGE); sed -i 's/VERSION/$(CONTRAIL_VERSION)/g' debian/changelog)
 	(cd build/packages/$(PACKAGE); sed -i 's/SERIES/$(SERIES)/g' debian/changelog)
 	(cd build/packages/$(PACKAGE); make -f debian/rules get-orig-source)
-	(cd build/packages/$(PACKAGE); dpkg-buildpackage -S -rfakeroot $(KEYOPT))
+	(cd build/packages/$(PACKAGE); dpkg-buildpackage -S -uc -us)
 
 package-contrail: debian-contrail
 	$(eval PACKAGE := contrail)
@@ -106,7 +106,7 @@ source-package-contrail: clean-contrail debian-contrail
 	(cd vrouter; git clean -f -d)
 	tar zcf build/packages/contrail_$(CONTRAIL_VERSION).orig.tar.gz $(SOURCE_CONTRAIL_ARCHIVE)
 	@echo "Building source package $(PACKAGE)"
-	(cd build/packages/$(PACKAGE); dpkg-buildpackage -S -rfakeroot $(KEYOPT))
+	(cd build/packages/$(PACKAGE); dpkg-buildpackage -S -uc -us)
 
 source-ifmap-server:
 	$(eval PACKAGE := ifmap-server)
@@ -114,7 +114,7 @@ source-ifmap-server:
 
 source-package-ifmap-server: clean-ifmap-server debian-ifmap-server source-ifmap-server
 	$(eval PACKAGE := ifmap-server)
-	(cd build/packages/$(PACKAGE); dpkg-buildpackage -S -rfakeroot $(KEYOPT))
+	(cd build/packages/$(PACKAGE); dpkg-buildpackage -S -uc -us)
 
 package-neutron-plugin-contrail: debian-neutron-plugin-contrail
 	$(eval PACKAGE = neutron-plugin-contrail)
@@ -130,7 +130,7 @@ source-package-neutron-plugin-contrail: clean-neutron-plugin-contrail debian-neu
 	sed -i 's/VERSION/$(NEUTRON_VERSION)/g' build/packages/$(PACKAGE)/debian/changelog
 	sed -i 's/SERIES/$(SERIES)/g' build/packages/$(PACKAGE)/debian/changelog
 	@echo "Building source package $(PACKAGE)"
-	(cd build/packages/$(PACKAGE); dpkg-buildpackage -S -rfakeroot $(KEYOPT))
+	(cd build/packages/$(PACKAGE); dpkg-buildpackage -S -uc -us)
 
 source-neutron-plugin-contrail: build/packages/neutron-plugin-contrail_$(NEUTRON_VERSION).orig.tar.gz
 build/packages/neutron-plugin-contrail_$(NEUTRON_VERSION).orig.tar.gz:
@@ -150,7 +150,7 @@ source-package-ceilometer-plugin-contrail: clean-ceilometer-plugin-contrail debi
 	sed -i 's/VERSION/$(CEILOMETER_VERSION)/g' build/packages/$(PACKAGE)/debian/changelog
 	sed -i 's/SERIES/$(SERIES)/g' build/packages/$(PACKAGE)/debian/changelog
 	@echo "Building source package $(PACKAGE)"
-	(cd build/packages/$(PACKAGE); dpkg-buildpackage -S -rfakeroot $(KEYOPT))
+	(cd build/packages/$(PACKAGE); dpkg-buildpackage -S -uc -us)
 
 source-ceilometer-plugin-contrail: build/packages/ceilometer-plugin-contrail_$(CEILOMETER_VERSION).orig.tar.gz
 build/packages/ceilometer-plugin-contrail_$(CEILOMETER_VERSION).orig.tar.gz:
@@ -170,7 +170,7 @@ source-package-contrail-heat: clean-contrail-heat debian-contrail-heat source-co
 	sed -i 's/VERSION/$(CONTRAIL_HEAT_VERSION)/g' build/packages/$(PACKAGE)/debian/changelog
 	sed -i 's/SERIES/$(SERIES)/g' build/packages/$(PACKAGE)/debian/changelog
 	@echo "Building source package $(PACKAGE)"
-	(cd build/packages/$(PACKAGE); dpkg-buildpackage -S -rfakeroot $(KEYOPT))
+	(cd build/packages/$(PACKAGE); dpkg-buildpackage -S -uc -us)
 
 source-contrail-heat: build/packages/contrail-heat_$(CONTRAIL_HEAT_VERSION).orig.tar.gz
 build/packages/contrail-heat_$(CONTRAIL_HEAT_VERSION).orig.tar.gz:
